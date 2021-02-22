@@ -2,8 +2,8 @@
     "name": "Ring Livestream",
     "version": "1.35",
     "slug": "ringlivestream",
-    "description": "A Home Assistant add-on to enable live streams of Ring Cameras.",
-    "url": "https://github.com/jeroenterheerdt/ring-hassio",
+    "description": "A Home Assistant add-on to enable live streams of Ring Cameras.  Includes HLS Player",
+    "url": "https://github.com/kennylerma/ring-hassio.git",
     "startup": "application",
     "arch": [
       "aarch64",
