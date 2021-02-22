@@ -63,10 +63,28 @@ var chosenCamera = CAMERA_NAME;
     // If Accessing The Main Page
     if (uri == '/index.html' || uri == '/') {
       res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.write('<html><head><title>Ring Livestream</title></head><body>');
+      res.write('<html>');
+      res.write('<head>');
+      res.write('<title>Ring Livestream</title>');
+      res.write('<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>');
+      res.write('</head>');
+      res.write('<body>');
       res.write('<h1>Welcome to your Ring Livestream!</h1>');
-      res.write(`<video width="352" height="198" controls autoplay src="public/stream.m3u8"></video>`);
-      res.write(`<br/>If you cannot see the video above open <a href="public/stream.m3u8">the stream</a> in a player such as VLC.`);
+      res.write('<video id="video" width="352" height="198" controls autoplay src="public/stream.m3u8"></video>');
+      res.write('<br/>If you cannot see the video above open <a href="public/stream.m3u8">the stream</a> in a player such as VLC.');
+      res.write('<script>');
+      res.write('var video = document.getElementById("video");');
+      res.write('var videoSrc = "public/stream.m3u8";');
+      res.write('if (Hls.isSupported()) {');
+      res.write('var hls = new Hls();');
+      res.write('hls.loadSource(videoSrc);');
+      res.write('hls.attachMedia(video);');
+      res.write('} else if (video.canPlayType("application/vnd.apple.mpegurl")) {');
+      res.write('video.src = videoSrc;');
+      res.write('}');
+      res.write('</script>');
+      res.write('<body>');
+      res.write('</html>');
       res.end();
       return;
     }

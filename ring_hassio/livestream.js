@@ -1,11 +1,10 @@
 "use strict";
 //Far majority of this code by Dgreif https://github.com/dgreif/ring/examples/browser_example.ts
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -36,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
 var ring_client_api_1 = require("ring-client-api");
 var util_1 = require("util");
@@ -108,10 +107,28 @@ function startStream() {
                         // If Accessing The Main Page
                         if (uri == '/index.html' || uri == '/') {
                             res.writeHead(200, { 'Content-Type': 'text/html' });
-                            res.write('<html><head><title>Ring Livestream</title></head><body>');
+                            res.write('<html>');
+                            res.write('<head>');
+                            res.write('<title>Ring Livestream</title>');
+                            res.write('<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>');
+                            res.write('</head>');
+                            res.write('<body>');
                             res.write('<h1>Welcome to your Ring Livestream!</h1>');
-                            res.write("<video width=\"352\" height=\"198\" controls autoplay src=\"public/stream.m3u8\"></video>");
-                            res.write("<br/>If you cannot see the video above open <a href=\"public/stream.m3u8\">the stream</a> in a player such as VLC.");
+                            res.write('<video id="video" width="352" height="198" controls autoplay src="public/stream.m3u8"></video>');
+                            res.write('<br/>If you cannot see the video above open <a href="public/stream.m3u8">the stream</a> in a player such as VLC.');
+                            res.write('<script>');
+                            res.write('var video = document.getElementById("video");');
+                            res.write('var videoSrc = "public/stream.m3u8";');
+                            res.write('if (Hls.isSupported()) {');
+                            res.write('var hls = new Hls();');
+                            res.write('hls.loadSource(videoSrc);');
+                            res.write('hls.attachMedia(video);');
+                            res.write('} else if (video.canPlayType("application/vnd.apple.mpegurl")) {');
+                            res.write('video.src = videoSrc;');
+                            res.write('}');
+                            res.write('</script>');
+                            res.write('<body>');
+                            res.write('</html>');
                             res.end();
                             return;
                         }
