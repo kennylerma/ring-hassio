@@ -76,7 +76,7 @@ var chosenCamera = CAMERA_NAME;
       res.write('var video = document.getElementById("video");');
       res.write('var videoSrc = "public/stream.m3u8";');
       res.write('if (Hls.isSupported()) {');
-      res.write('var hls = new Hls({liveDurationInfinity: true, enableWorker: true, lowLatencyMode: true});');
+      res.write('var hls = new Hls({liveDurationInfinity: true, enableWorker: true, lowLatencyMode: true, highBufferWatchdogPeriod: 1});');
       res.write('hls.loadSource(videoSrc);');
       res.write('hls.attachMedia(video);');
       res.write('} else if (video.canPlayType("application/vnd.apple.mpegurl")) {');
