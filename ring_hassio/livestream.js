@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
-var ring_client_api_1 = require("ring-client-api");
+var ring_client_api_1 = require("./ring-client-api");
 var util_1 = require("util");
 var fs = require('fs'), path = require('path'), http = require('http'), url = require('url'), zlib = require('zlib');
 var PORT = process.env.RING_PORT;
@@ -91,6 +91,7 @@ function startStream() {
                     ringApi = new ring_client_api_1.RingApi({
                         // Refresh token is used when 2fa is on
                         refreshToken: process.env.RING_REFRESH_TOKEN,
+                        controlCenterDisplayName: 'Home Assistant',
                         debug: true
                     });
                     return [4 /*yield*/, getCamera()

@@ -1,0 +1,139 @@
+{
+  "_from": "ring-client-api@9.15.3",
+  "_id": "ring-client-api@9.15.3",
+  "_inBundle": false,
+  "_integrity": "sha512-jRT1qmvggEHffjPi3fQrstagXa3dhUz2DJGzMwh5N1XzoOj3P3FRi2E7gvnblnRvKz99qGslpbYHolru1fqnfw==",
+  "_location": "/ring-client-api",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "ring-client-api@9.15.3",
+    "name": "ring-client-api",
+    "escapedName": "ring-client-api",
+    "rawSpec": "9.15.3",
+    "saveSpec": null,
+    "fetchSpec": "9.15.3"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/ring-client-api/-/ring-client-api-9.15.3.tgz",
+  "_shasum": "4f330000069c2b7545dac4798575ec8b6df61ec0",
+  "_spec": "ring-client-api@9.15.3",
+  "_where": "D:\\personal\\ring-hassio\\ring_hassio",
+  "author": {
+    "name": "dgreif"
+  },
+  "bin": {
+    "ring-auth-cli": "ring-auth-cli.js",
+    "ring-device-data-cli": "ring-device-data-cli.js"
+  },
+  "bugs": {
+    "url": "https://github.com/dgreif/ring/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@homebridge/camera-utils": "1.4.0",
+    "colors": "1.4.0",
+    "debug": "4.3.1",
+    "got": "11.8.1",
+    "rxjs": "6.6.3",
+    "sdp": "3.0.2",
+    "sip": "0.0.6",
+    "socket.io-client": "2.4.0",
+    "stun": "2.1.0",
+    "systeminformation": "5.3.4",
+    "uuid": "8.3.2",
+    "werift-rtp": "0.0.4"
+  },
+  "deprecated": false,
+  "description": "Unofficial API for Ring doorbells, cameras, security alarm system and smart lighting",
+  "devDependencies": {
+    "@nestjs/common": "7.6.12",
+    "@nestjs/core": "7.6.12",
+    "@types/debug": "4.1.5",
+    "@types/jest": "26.0.20",
+    "@types/node": "14.14.31",
+    "@types/socket.io-client": "1.4.35",
+    "@types/uuid": "8.3.0",
+    "@typescript-eslint/eslint-plugin": "4.15.1",
+    "@typescript-eslint/parser": "4.15.1",
+    "conventional-github-releaser": "3.1.5",
+    "dotenv": "8.2.0",
+    "eslint": "7.20.0",
+    "eslint-config-prettier": "7.2.0",
+    "eslint-plugin-jest": "24.1.5",
+    "eslint-plugin-prettier": "3.3.1",
+    "express": "4.17.1",
+    "homebridge": "1.3.0",
+    "homebridge-config-ui-x": "4.39.0",
+    "jest": "26.6.3",
+    "prettier": "2.2.1",
+    "reflect-metadata": "0.1.13",
+    "rimraf": "3.0.2",
+    "standard-version": "9.1.1",
+    "ts-jest": "26.5.1",
+    "typescript": "4.1.5"
+  },
+  "engines": {
+    "homebridge": ">=1.0.0",
+    "node": "^10 || ^12.20 || ^14"
+  },
+  "funding": [
+    {
+      "type": "paypal",
+      "url": "https://www.paypal.me/dustingreif"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/dgreif"
+    }
+  ],
+  "homepage": "https://github.com/dgreif/ring#readme",
+  "keywords": [
+    "ring",
+    "doorbell",
+    "doorbot",
+    "camera",
+    "alarm",
+    "smart",
+    "light",
+    "beam",
+    "security",
+    "client",
+    "api"
+  ],
+  "license": "MIT",
+  "main": "lib/api/index.js",
+  "name": "ring-client-api",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dgreif/ring.git"
+  },
+  "scripts": {
+    "api-example": "npm run build && node ./lib/examples/api-example.js",
+    "auth-cli": "npm run build && ./ring-auth-cli.js",
+    "browser-example": "npm run build && node ./lib/examples/browser-example.js",
+    "build": "rm -rf lib && tsc --declaration",
+    "deploy": "standard-version && npm publish ./release-api && npm publish ./release-homebridge && npm run push-with-tags",
+    "deploy-beta": "standard-version --prerelease beta && npm publish --tag beta ./release-api && npm publish --tag beta ./release-homebridge && npm run push-with-tags",
+    "device-data-cli": "npm run build && ./ring-device-data-cli.js",
+    "example": "npm run build && node ./lib/examples/example.js",
+    "lint": "eslint '**/*.ts' --fix",
+    "prepare-npm-packages": "./build/package-api.sh && ./build/package-homebridge.sh",
+    "push-with-tags": "git push --follow-tags && node ./build/github-releaser.js",
+    "record-example": "npm run build && node ./lib/examples/record-example.js",
+    "stream-example": "npm run build && node ./lib/examples/stream-example.js",
+    "test": "jest && eslint '**/*.ts'",
+    "test-homebridge": "npm run build && ./build/package-homebridge.sh && homebridge -P ./release-homebridge -U ./.homebridge",
+    "watch:tests": "jest --watch"
+  },
+  "standard-version": {
+    "scripts": {
+      "prerelease": "npm run build && npm test",
+      "posttag": "npm run prepare-npm-packages"
+    }
+  },
+  "version": "9.15.3"
+}
