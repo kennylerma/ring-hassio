@@ -76,7 +76,7 @@ var chosenCamera = CAMERA_NAME;
       res.write('var video = document.getElementById("video");');
       res.write('var videoSrc = "public/stream.m3u8";');
       res.write('if (Hls.isSupported()) {');
-      res.write('var hls = new Hls({liveDurationInfinity: true, enableWorker: true, lowLatencyMode: true, highBufferWatchdogPeriod: 1});');
+      res.write('var hls = new Hls({liveDurationInfinity: true, enableWorker: true, lowLatencyMode: true, highBufferWatchdogPeriod: 1, nudgeMaxRetry: 10, liveSyncDuration: 1});');
       res.write('hls.loadSource(videoSrc);');
       res.write('hls.attachMedia(video);');
       res.write('} else if (video.canPlayType("application/vnd.apple.mpegurl")) {');
@@ -170,7 +170,7 @@ var chosenCamera = CAMERA_NAME;
   const sipSession = await camera.streamVideo({
     output: [
       '-preset',
-      'veryfast',
+      'ultrafast',
       '-g',
       '25',
       '-sc_threshold',
