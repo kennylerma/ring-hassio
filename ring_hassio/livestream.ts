@@ -159,7 +159,7 @@ var chosenCamera = CAMERA_NAME;
     });
 
     // Extend socket lifetime for demo purposes
-    socket.setTimeout(4000);
+    socket.setTimeout(20000);
   });
   console.log('Started server, listening on port '+PORT+'.')
 
@@ -170,7 +170,7 @@ var chosenCamera = CAMERA_NAME;
   const sipSession = await camera.streamVideo({
     output: [
       '-preset',
-      'ultrafast',
+      'veryfast',
       '-g',
       '25',
       '-sc_threshold',
