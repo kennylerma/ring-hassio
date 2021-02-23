@@ -133,7 +133,7 @@ function startStream() {
                             return;
                         }
                         var filename = path.join("./", uri);
-                        console.log('mapped filename: ' + filename);
+                        //console.log('mapped filename: '+filename)
                         fs.exists(filename, function (exists) {
                             if (!exists) {
                                 console.log('file not found: ' + filename);
@@ -198,7 +198,7 @@ function startStream() {
                             delete sockets[socketId];
                         });
                         // Extend socket lifetime for demo purposes
-                        socket.setTimeout(20000);
+                        //socket.setTimeout(20000);
                     });
                     console.log('Started server, listening on port ' + PORT + '.');
                     return [4 /*yield*/, util_1.promisify(fs.exists)(publicOutputDirectory)];
@@ -237,7 +237,6 @@ function startStream() {
                             console.log('socket', socketId, 'destroyed');
                             sockets[socketId].destroy();
                         }
-                        //app.stop()
                         console.log('Restarting server');
                         startStream();
                     });
