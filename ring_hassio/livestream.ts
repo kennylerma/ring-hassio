@@ -1,7 +1,7 @@
 //Far majority of this code by Dgreif https://github.com/dgreif/ring/examples/browser_example.ts
 
 import 'dotenv/config'
-import { RingApi } from './ring-client-api'
+import { RingApi } from 'ring-client-api'
 import { promisify } from 'util'
 const fs = require('fs'),
   path = require('path'),
@@ -23,7 +23,7 @@ var chosenCamera = CAMERA_NAME;
     const ringApi = new RingApi({
       // Refresh token is used when 2fa is on
       refreshToken: process.env.RING_REFRESH_TOKEN!,
-      controlCenterDisplayName: 'Home Assistant',
+      controlCenterDisplayName: 'HomeAssistant',
       debug: true
     })
     ///////////////
